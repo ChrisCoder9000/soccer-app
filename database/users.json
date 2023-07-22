@@ -1,0 +1,44 @@
+[
+  {
+    "username": "testuser",
+    "email": "test@example.com",
+    "password": "$2a$10$4KHmzhmdvJkiFc41sAzMv.7/4/GSS2Av413XsKQqq0mFC3BXfLHBW",
+    "type": "scout",
+    "id": 1
+  },
+  {
+    "username": "mark123",
+    "email": "mark@football.com",
+    "password": "$2a$10$gRKVw5jHANMUqw5KKuMN1./0yb1emcJ04JDP08qdzdWWjTjl5oLz2",
+    "type": "scout",
+    "id": 2
+  },
+  {
+    "username": "jonny_85",
+    "email": "jonny@gmail.com",
+    "password": "$2a$10$ovvppuJmM4TBvoqonQ0JuOfl9jrqOxsvtXWCGK.et883JIkfU3GW2",
+    "type": "soccer",
+    "id": 3
+  },
+  {
+    "username": "giulia",
+    "email": "giulia@mail.com",
+    "password": "$2a$10$MIXmM7DA/Q1hw.h4hWJBseOtMB84rwFtj3HW//DN2s4b0PmpS/aE.",
+    "type": "soccer",
+    "id": 4
+  },
+  {
+    "username": "Hulio",
+    "email": "hulio@outlook.com",
+    "password": "$2a$10$T6e1pEEVVl0VCelgz6ywre5WiHrdrMGhdojbNYPePH4j23D8iQewu",
+    "type": "soccer",
+    "id": 5
+  },
+  {
+    "username": "marinaio",
+    "email": "marinaio@mail.com",
+    "password": "$2a$10$AcHuRs8H6/NuRSiPQlJvM.8fntHWIh5jmmzQe4FzH67W8sk9O2sC6",
+    "type": "soccer",
+    "id": 6
+  }
+]
