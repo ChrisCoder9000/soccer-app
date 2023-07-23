@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyledInputText } from "./StyledInputText";
 
 interface IInputText {
@@ -15,6 +15,10 @@ const InputText = ({ placeholder, secured, onChange, value }: IInputText) => {
     setCValue(e.target.value);
     onChange && onChange(e);
   };
+
+  useEffect(() => {
+    value && setCValue(value);
+  }, [value]);
 
   return (
     <StyledInputText>

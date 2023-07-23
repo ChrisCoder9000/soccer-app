@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import bcrypt from "bcryptjs";
 import validator from "validator";
 import { userTypes } from "../../../types/general";
+import path from "path";
 
 export interface IUser {
   id?: number;
@@ -11,6 +12,9 @@ export interface IUser {
   password: string;
   passwordRepeat?: string;
   type: userTypes;
+  kickPower?: number;
+  speed?: number;
+  name?: string;
 }
 
 export class User implements IUser {
@@ -20,6 +24,7 @@ export class User implements IUser {
   password: string;
   passwordRepeat?: string;
   type: userTypes;
+  kickPower?: number;
 
   constructor(data: {
     username: string;
@@ -36,7 +41,12 @@ export class User implements IUser {
   }
 
   async save(): Promise<IUser> {
-    const filename = `${__dirname}/../../../../../../database/users.json`;
+    const filename = path.join(
+      __dirname,
+      `${
+        __dirname.includes(".next") ? "../" : ""
+      }../../../../../database/users.json`
+    );
 
     const isEmailUnique = await this.isEmailUnique(this.email);
 
@@ -79,7 +89,12 @@ export class User implements IUser {
     password: string
   ): Promise<User | null> {
     try {
-      const filename = `${__dirname}/../../../../../../database/users.json`;
+      const filename = path.join(
+        __dirname,
+        `${
+          __dirname.includes(".next") ? "../" : ""
+        }../../../../../database/users.json`
+      );
 
       const data = await fs.readFile(filename, "utf8");
       const usersArray: User[] = data ? JSON.parse(data) : [];
@@ -92,6 +107,7 @@ export class User implements IUser {
 
       return null;
     } catch (error) {
+      console.log(error);
       throw new APIError("Error reading user data", 500);
     }
   }
@@ -101,7 +117,12 @@ export class User implements IUser {
     value: string
   ): Promise<User | null> {
     try {
-      const filename = `${__dirname}/../../../../../../database/users.json`;
+      const filename = path.join(
+        __dirname,
+        `${
+          __dirname.includes(".next") ? "" : ""
+        }../../../../../../database/users.json`
+      );
 
       const data = await fs.readFile(filename, "utf8");
       const usersArray: User[] = data ? JSON.parse(data) : [];
@@ -110,6 +131,95 @@ export class User implements IUser {
 
       return user || null;
     } catch (error) {
+      console.log(error);
+      throw new APIError("Error reading user data", 500);
+    }
+  }
+
+  static async findManyBy(
+    param: keyof IUser,
+    value: any
+  ): Promise<IUser[] | null> {
+    try {
+      const filename = path.join(
+        __dirname,
+        `${
+          __dirname.includes(".next") ? "../" : ""
+        }../../../../../database/users.json`
+      );
+
+      const data = await fs.readFile(filename, "utf8");
+      const usersArray: User[] = data ? JSON.parse(data) : [];
+
+      const lowerCaseValue = value.toLowerCase();
+
+      const users = usersArray.filter((u: IUser) => {
+        const lowerCaseField = String(u[param]).toLowerCase();
+
+        return lowerCaseField.includes(lowerCaseValue);
+      });
+
+      return users || null;
+    } catch (error) {
+      console.log(error);
+      throw new APIError("Error reading user data", 500);
+    }
+  }
+
+  static async findByIdAndUpdate(
+    id: number,
+    uData: object
+  ): Promise<IUser | null> {
+    try {
+      const filename = path.join(
+        __dirname,
+        `${
+          __dirname.includes(".next") ? "../" : ""
+        }../../../../../database/users.json`
+      );
+
+      const data = await fs.readFile(filename, "utf8");
+      const usersArray: IUser[] = data ? JSON.parse(data) : [];
+
+      const userIndex = usersArray.findIndex((u: IUser) => u.id === id);
+
+      if (userIndex === -1) {
+        return null;
+      }
+
+      const updatedUser = {
+        ...usersArray[userIndex],
+        ...uData,
+      };
+
+      usersArray[userIndex] = updatedUser as IUser;
+
+      const newData = JSON.stringify(usersArray, null, 2);
+
+      await fs.writeFile(filename, newData, "utf8");
+
+      return updatedUser as IUser;
+    } catch (err) {
+      console.log(err);
+      throw new APIError("Error updating user data", 500);
+    }
+  }
+
+  static async getAll(): Promise<IUser[]> {
+    try {
+      const filename = path.join(
+        __dirname,
+        `${
+          __dirname.includes(".next") ? "../" : ""
+        }../../../../../database/users.json`
+      );
+
+      const data = await fs.readFile(filename, "utf8");
+      const usersArray: User[] = data ? JSON.parse(data) : [];
+
+      return usersArray;
+    } catch (error) {
+      console.log(error);
       throw new APIError("Error reading user data", 500);
     }
   }
@@ -145,7 +255,12 @@ export class User implements IUser {
   }
 
   private async isEmailUnique(email: string): Promise<boolean> {
-    const filename = `${__dirname}/../../../../../../database/users.json`;
+    const filename = path.join(
+      __dirname,
+      `${
+        __dirname.includes(".next") ? "../" : ""
+      }../../../../../database/users.json`
+    );
 
     try {
       const data = await fs.readFile(filename, "utf8");
@@ -159,7 +274,12 @@ export class User implements IUser {
   }
 
   private async isUsernameUnique(username: string): Promise<boolean> {
-    const filename = `${__dirname}/../../../../../../database/users.json`;
+    const filename = path.join(
+      __dirname,
+      `${
+        __dirname.includes(".next") ? "../" : ""
+      }../../../../../database/users.json`
+    );
 
     try {
       const data = await fs.readFile(filename, "utf8");

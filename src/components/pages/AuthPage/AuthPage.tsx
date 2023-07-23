@@ -65,7 +65,7 @@ const AuthPage = () => {
           {authMode === "register" && (
             <InputText
               placeholder="Username"
-              value={""}
+              value={formState.username || ""}
               onChange={function (
                 e: React.ChangeEvent<HTMLInputElement>
               ): void {
@@ -78,7 +78,7 @@ const AuthPage = () => {
           )}
           <InputText
             placeholder="Email"
-            value={""}
+            value={formState.email}
             onChange={function (e: React.ChangeEvent<HTMLInputElement>): void {
               dispatchFormState({
                 type: "email",
@@ -89,7 +89,7 @@ const AuthPage = () => {
           <InputText
             secured
             placeholder="Password"
-            value={""}
+            value={formState.password}
             onChange={function (e: React.ChangeEvent<HTMLInputElement>): void {
               dispatchFormState({
                 type: "password",
@@ -102,7 +102,7 @@ const AuthPage = () => {
               <InputText
                 secured
                 placeholder="Confirm Password"
-                value={""}
+                value={formState.passwordRepeat || ""}
                 onChange={function (
                   e: React.ChangeEvent<HTMLInputElement>
                 ): void {

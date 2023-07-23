@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const StyledInputText = styled.div`
   margin: 0.5rem;
-  width: 100%;
+  width: calc(100% -1rem);
 
   input {
     width: 100%;

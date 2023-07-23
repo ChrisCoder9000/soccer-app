@@ -8,5 +8,7 @@ export const Colors = {
   secondary500: "#FBCFE8",
   secondary600: "#F795D4",
   black1: "#0a0a0a",
+  white1: "#ffffff",
   red1: "#d91f44",
+  green1: "#44c155",
 };

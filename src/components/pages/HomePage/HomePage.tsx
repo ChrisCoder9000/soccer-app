@@ -4,24 +4,25 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { userTypes } from "../../../../types/general";
 import SoccerMainPage from "./components/SoccerMainPage";
+import { FormProvider } from "./components/SoccerMainPage/formState";
+import ScoutMainPage from "./components/ScountMainPage";
 
 const HomePage = () => {
-  const [component, setComponent] = useState<React.ReactNode>();
-
   const authenticatedUser = useSelector(
     (state: RootState) => state.mainSlice.authenticatedUser
   );
 
-  useEffect(() => {
-    if (authenticatedUser?.type === userTypes.SCOUT) {
-    }
+  if (authenticatedUser?.type === userTypes.SCOUT) {
+    return <ScoutMainPage />;
+  }
 
-    if (authenticatedUser?.type === userTypes.SOCCER) {
-      setComponent(SoccerMainPage);
-    }
-  }, [authenticatedUser?.type]);
-
-  return <StyledHomePage>{component}</StyledHomePage>;
+  if (authenticatedUser?.type === userTypes.SOCCER) {
+    return (
+      <FormProvider>
+        <SoccerMainPage />
+      </FormProvider>
+    );
+  }
 };
 
 export default HomePage;

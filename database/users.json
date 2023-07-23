@@ -32,7 +32,10 @@
     "email": "hulio@outlook.com",
     "password": "$2a$10$T6e1pEEVVl0VCelgz6ywre5WiHrdrMGhdojbNYPePH4j23D8iQewu",
     "type": "soccer",
-    "id": 5
+    "id": 5,
+    "name": "Hulio",
+    "kickPower": 20,
+    "speed": 68
   },
   {
     "username": "marinaio",

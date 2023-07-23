@@ -3,6 +3,7 @@ import { Borders } from "@/constants/Dimens";
 import styled from "styled-components";
 
 export const StyledButton = styled.div`
+  width: calc(100% - 1rem);
   margin: 0.5rem;
 
   button {
@@ -15,6 +16,7 @@ export const StyledButton = styled.div`
     font-weight: 600;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    color: ${Colors.white1};
 
     &:hover {
       background-color: ${Colors.primary500};
