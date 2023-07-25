@@ -42,10 +42,10 @@ export class User implements IUser {
 
   async save(): Promise<IUser> {
     const filename = path.join(
-      __dirname,
-      `${
-        __dirname.includes(".next") ? "../" : ""
-      }../../../../../database/users.json`
+      process.cwd(),
+      "public",
+      "database",
+      "users.json"
     );
 
     const isEmailUnique = await this.isEmailUnique(this.email);
@@ -90,10 +90,10 @@ export class User implements IUser {
   ): Promise<User | null> {
     try {
       const filename = path.join(
-        __dirname,
-        `${
-          __dirname.includes(".next") ? "../" : ""
-        }../../../../../database/users.json`
+        process.cwd(),
+        "public",
+        "database",
+        "users.json"
       );
 
       const data = await fs.readFile(filename, "utf8");
@@ -118,10 +118,10 @@ export class User implements IUser {
   ): Promise<User | null> {
     try {
       const filename = path.join(
-        __dirname,
-        `${
-          __dirname.includes(".next") ? "../" : ""
-        }../../../../../database/users.json`
+        process.cwd(),
+        "public",
+        "database",
+        "users.json"
       );
 
       const data = await fs.readFile(filename, "utf8");
@@ -142,10 +142,10 @@ export class User implements IUser {
   ): Promise<IUser[] | null> {
     try {
       const filename = path.join(
-        __dirname,
-        `${
-          __dirname.includes(".next") ? "../" : ""
-        }../../../../../database/users.json`
+        process.cwd(),
+        "public",
+        "database",
+        "users.json"
       );
 
       const data = await fs.readFile(filename, "utf8");
@@ -172,10 +172,10 @@ export class User implements IUser {
   ): Promise<IUser | null> {
     try {
       const filename = path.join(
-        __dirname,
-        `${
-          __dirname.includes(".next") ? "../" : ""
-        }../../../../../database/users.json`
+        process.cwd(),
+        "public",
+        "database",
+        "users.json"
       );
 
       const data = await fs.readFile(filename, "utf8");
@@ -208,10 +208,10 @@ export class User implements IUser {
   static async getAll(): Promise<IUser[]> {
     try {
       const filename = path.join(
-        __dirname,
-        `${
-          __dirname.includes(".next") ? "../" : ""
-        }../../../../../database/users.json`
+        process.cwd(),
+        "public",
+        "database",
+        "users.json"
       );
 
       const data = await fs.readFile(filename, "utf8");
@@ -256,10 +256,10 @@ export class User implements IUser {
 
   private async isEmailUnique(email: string): Promise<boolean> {
     const filename = path.join(
-      __dirname,
-      `${
-        __dirname.includes(".next") ? "../" : ""
-      }../../../../../database/users.json`
+      process.cwd(),
+      "public",
+      "database",
+      "users.json"
     );
 
     try {
@@ -275,10 +275,10 @@ export class User implements IUser {
 
   private async isUsernameUnique(username: string): Promise<boolean> {
     const filename = path.join(
-      __dirname,
-      `${
-        __dirname.includes(".next") ? "../" : ""
-      }../../../../../database/users.json`
+      process.cwd(),
+      "public",
+      "database",
+      "users.json"
     );
 
     try {
