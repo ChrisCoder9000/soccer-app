@@ -120,8 +120,8 @@ export class User implements IUser {
       const filename = path.join(
         __dirname,
         `${
-          __dirname.includes(".next") ? "" : ""
-        }../../../../../../database/users.json`
+          __dirname.includes(".next") ? "../" : ""
+        }../../../../../database/users.json`
       );
 
       const data = await fs.readFile(filename, "utf8");
